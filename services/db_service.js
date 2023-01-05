@@ -28,3 +28,9 @@ const readAll = async (docName) => await getDocs(collection(db, docName));
 
 const read = async (docName, ...args) =>
   await getDocs(query(collection(db, docName), ...args));
+
+module.exports = {
+  read,
+  readAll,
+  add,
+};
