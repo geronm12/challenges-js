@@ -29,3 +29,11 @@ const deleteChallenge = async (challengeId) => {
   const response = await remove(_CONSTANTS.CHALLENGE, challengeId);
   console.log(response);
 };
+
+module.exports = {
+  addChallenge,
+  deleteChallenge,
+  updateChallenge,
+  readAllChallenges,
+  readChallengeByDificult,
+};
