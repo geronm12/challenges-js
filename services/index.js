@@ -49,38 +49,11 @@ function tester(funcion) {
     db.challenge.testCases.forEach((element) => {
       const resultadoEsperado = element.output;
       const args = element.input;
-      console.log(args);
       const resultado = funcion(...args);
-      console.log(resultado);
     });
   } catch (e) {
     console.log("Error al compilar.");
   }
-}
-
-function testerArray() {}
-
-function testearPrimitive() {}
-
-function testerObjects() {
-  throw new Error("Not Implemented");
-}
-
-function parOimpar(numbers) {
-  const array = [];
-  for (let index = 0; index < numbers.length; index++) {
-    if (numbers[index] % 2 === 0) {
-      array[index] = "par";
-    } else {
-      array[index] = "impar";
-    }
-  }
-
-  return array;
-}
-
-function suma(a, b) {
-  return a + b;
 }
 
 //Los argumentos y la estructura de la función pueden ser dinámicas

@@ -7,20 +7,45 @@ const {
   getFirestore,
   addDoc,
   collection,
-  where,
   query,
   getDocs,
+  updateDoc,
+  deleteDoc,
+  doc,
 } = require("firebase/firestore");
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-const add = async (doc, docName) => {
+const add = async (document, docName) => {
   try {
-    const docRef = await addDoc(collection(db, docName), doc);
+    const docRef = await addDoc(collection(db, docName), document);
     console.log("Document written with ID: ", docRef.id);
+    return docRef;
   } catch (e) {
     console.error("Error adding document: ", e);
+  }
+};
+
+const update = async (document, docName, docId) => {
+  try {
+    const docRef = doc(db, docName, docId);
+    const updatedDoc = await updateDoc(docRef, document);
+    console.log("Document written with ID: ", updatedDoc.id);
+    return updatedDoc;
+  } catch (e) {
+    console.error("Error updating document: ", e);
+  }
+};
+
+const remove = async (docName, docId) => {
+  try {
+    const docRef = doc(db, docName, docId);
+    const deletedDoc = await deleteDoc(docRef);
+    console.log("Document deleted.");
+    return deletedDoc;
+  } catch (e) {
+    console.error("Error updating document: ", e);
   }
 };
 
@@ -33,4 +58,6 @@ module.exports = {
   read,
   readAll,
   add,
+  update,
+  remove,
 };
